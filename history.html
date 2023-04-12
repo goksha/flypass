@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <title>Flypass</title>
+</head>
+
+<body >
+    <nav>
+        <div class="logo">
+            <h4>Flypass</h4>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/index.html"><i class="fas fa-home">Home</i></a></li>
+            <li><a onclick="signOut()" href="/index.html" class="user"><i class="fa fa-user" aria-hidden="true">signout</i></i></a></li>
+        </ul>
+        
+        <div class="burger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <h1>BOOKING HISTORY</h1>
+    <div id="api_time">
+
+    </div> 
+
+    <div class="container">
+        <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Passenger Name</th>
+                <th scope="col">Transaction ID</th>
+                <th scope="col">Depart From</th>
+                <th scope="col">Arrive At</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody id="table_body">
+            </tbody>
+          </table>
+          <form>
+            <h2>Please Enter Transaction ID To Cancel</h2>
+            <label for="Transaction_ID">Transaction ID:</label>
+            <input type="text" id="Transaction_ID" name="Transaction_ID"><br>
+            <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+        </div>
+
+    <!-- <div class="container-sm">
+        <form>
+            <h2>Please Enter Transaction ID To Cancel</h2>
+            <label for="Transaction_ID">Transaction ID:</label>
+            <input type="text" id="Transaction_ID" name="Transaction_ID"><br>
+            <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+    </div> -->
+    <div class="test"> </div>
+
+   <script>
+    fetch('https://b6kjdmd73m.execute-api.us-east-1.amazonaws.com/Test/time')
+    .then(res => res.json())
+    .then(data => {
+        const dataContainer = document.getElementById('api_time');
+        dataContainer.innerHTML = `<h2>TIME: ${data.time}  TimeZone: ${data.timezone}</h2>`;
+        console.log(data);
+    })
+   </script>
+
+
+   <script>
+   </script>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/amazon-cognito-identity.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script type="text/javascript" src="./js/apiGateway-js-sdk/lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="./js/apiGateway-js-sdk/lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="./js/apiGateway-js-sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="./js/apiGateway-js-sdk/lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="./js/apiGateway-js-sdk/lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="./js/apiGateway-js-sdk/lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="./js/apiGateway-js-sdk/lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="./js/apiGateway-js-sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="./js/apiGateway-js-sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="./js/apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="./js/apiGateway-js-sdk/apigClient.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="js/history.js"></script>
+    <script type="text/javascript">
+        const now = new Date()  
+        const secondsSinceEpoch = Math.round(now.getTime() / 1000)  
+        console.log(secondsSinceEpoch);
+    </script>
+</body>
+   
